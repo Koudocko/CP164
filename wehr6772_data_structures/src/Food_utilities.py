@@ -2,14 +2,14 @@
 -------------------------------------------------------
 Food class utility functions.
 -------------------------------------------------------
-Author:  David Brown
-ID:      123456789
-Email:   dbrown@wlu.ca
-__updated__ = "2023-05-15"
+Author:  Tyler Wehrle
+ID:      169056772
+Email:   wehr6772@mylaurier.ca
+__updated__ = "2024-01-01"
 -------------------------------------------------------
 """
-from Food import Food
 
+from Food import Food
 
 def get_food():
     """
@@ -23,9 +23,19 @@ def get_food():
     """
 
     # Your code here
+    name = input("Name: ")
+
+    print("Origin")
+    print(Food.origins())
+    origin = int(input(": "))
+
+    is_vegetarian = True if input("Vegetarian (Y/N): ").upper() == 'Y' else False
+
+    calories = int(input("Calories: "))
+
+    food = Food(name, origin, is_vegetarian, calories)
 
     return food
-
 
 def read_food(line):
     """
@@ -42,9 +52,10 @@ def read_food(line):
     """
 
     # Your code here
+    name, origin, is_vegetarian, calories = line.split('|')
+    food = Food(name, int(origin), True if is_vegetarian == "True" else False , int(calories))
 
     return food
-
 
 def read_foods(file_variable):
     """
@@ -60,9 +71,14 @@ def read_foods(file_variable):
     """
 
     # Your code here
+    line = file_variable.readline()
+    foods = []
+
+    while line != "":
+        foods.append(read_food(line))
+        line = file_variable.readline()
 
     return foods
-
 
 def write_foods(file_variable, foods):
     """
@@ -82,9 +98,12 @@ def write_foods(file_variable, foods):
     """
 
     # Your code here
+    for food in foods:
+        file_variable.write(
+            format(f"{food.name}|{food.origin}|"
+                   f"{food.is_vegetarian}|{food.calories}\n"))
 
     return
-
 
 def get_vegetarian(foods):
     """
@@ -101,9 +120,13 @@ def get_vegetarian(foods):
     """
 
     # Your code here
+    veggies = []
+
+    for food in foods:
+        if food.is_vegetarian:
+            veggies.append(food)
 
     return veggies
-
 
 def by_origin(foods, origin):
     """
@@ -126,7 +149,6 @@ def by_origin(foods, origin):
 
     return origins
 
-
 def average_calories(foods):
     """
     -------------------------------------------------------
@@ -144,7 +166,6 @@ def average_calories(foods):
     # Your code here
 
     return avg
-
 
 def calories_by_origin(foods, origin):
     """
@@ -184,7 +205,6 @@ def food_table(foods):
     # Your code here
 
     return
-
 
 def food_search(foods, origin, max_cals, is_veg):
     """

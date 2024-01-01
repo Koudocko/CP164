@@ -2,13 +2,12 @@
 -------------------------------------------------------
 Food class definition.
 -------------------------------------------------------
-Author:  David Brown
-ID:      123456789
-Email:   dbrown@wlu.ca
-__updated__ = "2023-05-15"
+Author:  Tyler Wehrle
+ID:      169056772
+Email:   wehr6772@mylaurier.ca
+__updated__ = "2024-01-01"
 -------------------------------------------------------
 """
-
 
 class Food:
     """
@@ -37,8 +36,13 @@ class Food:
         """
 
         # your code here
+        string = ""
+        align = len(str(len(Food.ORIGIN)))
 
-        return
+        for idx in range(0, len(Food.ORIGIN)):
+            string += format(f"{idx:{align}} {Food.ORIGIN[idx]}\n")
+
+        return string
 
     def __init__(self, name, origin, is_vegetarian, calories):
         """
@@ -78,8 +82,13 @@ class Food:
         """
 
         # your code here
+        string = format(
+            f"Name:       {self.name}\n"
+            f"Origin:     {Food.ORIGIN[self.origin]}\n"
+            f"Vegetarian: {self.is_vegetarian}\n"
+            f"Calories:   {self.calories}")
 
-        return
+        return string
 
     def __eq__(self, target):
         """
