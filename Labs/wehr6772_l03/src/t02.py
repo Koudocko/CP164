@@ -1,6 +1,6 @@
 """
 -------------------------------------------------------
-Lab 1 Testing
+Lab 2 Testing
 -------------------------------------------------------
 Author:  Tyler Wehrle
 ID:      169056772
@@ -10,9 +10,16 @@ __updated__ = "2024-01-01"
 """
 
 import sys,os
-sys.path.append(os.path.realpath('../../../wehr6772_data_structures/src'))
+sys.path.append(os.path.realpath('../../../login_data_structures/src'))
 
-from Food import Food
-from Food_utilities import *
+from Queue_array import Queue
 
-print(Food.origins())
+q = Queue()
+
+print(f"Insert 0")
+q.insert(0)
+print(f"Peek: {q.peek()}")
+print(f"Empty: {q.is_empty()}")
+
+print(f"Remove: {q.remove()}")
+print(f"Empty: {q.is_empty()}")

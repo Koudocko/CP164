@@ -1,0 +1,94 @@
+"""
+-------------------------------------------------------
+Lab/Assignment  Testing
+-------------------------------------------------------
+Author:  Tyler Wehrle
+ID:      169056772
+Email:   wehr6772@mylaurier.ca
+Version: 2024-01-01
+-------------------------------------------------------
+"""
+-------------------------------------------------------
+t01
+-------------------------------------------------------
+
+Empty: True
+Insert 0
+Empty: False
+
+-------------------------------------------------------
+t02
+-------------------------------------------------------
+
+Insert 0
+Peek: 0
+Empty: False
+Remove: 0
+Empty: True
+
+-------------------------------------------------------
+t03
+-------------------------------------------------------
+
+List initial: [1, 2, 3, 4, 5]
+
+Array to queue
+Queue peek: 1
+List now: []
+
+Queue to array
+Queue empty: True
+List now: [1, 2, 3, 4, 5]
+
+Queue test
+is_empty() True
+insert(0) None
+peek() 0
+remove() 0
+len() 0
+
+-------------------------------------------------------
+t04
+-------------------------------------------------------
+
+Insert 22
+Peek 22
+Insert 33
+Peek 22
+Insert 11
+Peek 11
+Insert 55
+Peek 11
+Insert 44
+Peek 11
+
+-------------------------------------------------------
+t05
+-------------------------------------------------------
+
+Insert 22
+Insert 11
+Peek 11
+Remove first
+Peek 22
+
+-------------------------------------------------------
+t06
+-------------------------------------------------------
+
+Array to queue
+Queue peek: Name:       BBQ Pork
+Origin:     Chinese
+Vegetarian: False
+Calories:   920
+List now: []
+
+Queue to array
+Queue empty: True
+
+Queue test
+is_empty() True
+insert(0) None
+peek() 0
+remove() 0
+len() 0

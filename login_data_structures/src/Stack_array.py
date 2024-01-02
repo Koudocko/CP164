@@ -57,7 +57,7 @@ class Stack:
         """
         # Your code here
 
-        return True if len(self._values) == 0 else False
+        return len(self._values) == 0
 
     def peek(self):
         """

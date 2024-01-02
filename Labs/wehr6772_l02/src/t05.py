@@ -1,6 +1,6 @@
 """
 -------------------------------------------------------
-Lab 1 Testing
+Lab 5 Testing
 -------------------------------------------------------
 Author:  Tyler Wehrle
 ID:      169056772
@@ -10,9 +10,12 @@ __updated__ = "2024-01-01"
 """
 
 import sys,os
+sys.path.append(os.path.realpath('../../../login_data_structures/src'))
 sys.path.append(os.path.realpath('../../../wehr6772_data_structures/src'))
 
-from Food import Food
-from Food_utilities import *
+from utilities import stack_test
+from Food_utilities import read_foods
 
-print(Food.origins())
+fh = open("foods.txt", "r")
+
+stack_test(read_foods(fh))

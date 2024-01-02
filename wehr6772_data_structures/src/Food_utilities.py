@@ -29,7 +29,7 @@ def get_food():
     print(Food.origins())
     origin = int(input(": "))
 
-    is_vegetarian = True if input("Vegetarian (Y/N): ").upper() == 'Y' else False
+    is_vegetarian = input("Vegetarian (Y/N): ").upper() == 'Y'
 
     calories = int(input("Calories: "))
 
@@ -53,7 +53,7 @@ def read_food(line):
 
     # Your code here
     name, origin, is_vegetarian, calories = line.split('|')
-    food = Food(name, int(origin), True if is_vegetarian == "True" else False , int(calories))
+    food = Food(name, int(origin), is_vegetarian == "True", int(calories))
 
     return food
 

@@ -10,9 +10,16 @@ __updated__ = "2024-01-01"
 """
 
 import sys,os
-sys.path.append(os.path.realpath('../../../wehr6772_data_structures/src'))
+sys.path.append(os.path.realpath('../../../login_data_structures/src'))
 
-from Food import Food
-from Food_utilities import *
+from Stack_array import Stack
+from utilities import array_to_stack
 
-print(Food("Ravioli", 7, False, 246))
+s = Stack()
+source = [1, 2, 3, 4, 5]
+
+print(f"List before: {source}")
+array_to_stack(s, source)
+print(f"List after: {source}")
+
+print(f"Stack top: {s.peek()}")

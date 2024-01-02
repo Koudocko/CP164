@@ -10,14 +10,18 @@ __updated__ = "2024-01-01"
 """
 
 import sys,os
-sys.path.append(os.path.realpath('../../../wehr6772_data_structures/src'))
+sys.path.append(os.path.realpath('../../../login_data_structures/src'))
 
-from Food import Food
-from Food_utilities import *
+from Priority_Queue_array import Priority_Queue
 
-fh = open("foods.txt", "r")
+q = Priority_Queue()
 
-for food in read_foods(fh):
-    print(f"{food}\n")
+print("Insert 22")
+q.insert(22)
+print("Insert 11")
+q.insert(11)
+print(f"Peek {q.peek()}")
 
-fh.close()
+print("Remove first")
+q.remove()
+print(f"Peek {q.peek()}")
