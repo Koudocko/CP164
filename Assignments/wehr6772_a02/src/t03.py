@@ -1,6 +1,6 @@
 """
 -------------------------------------------------------
-Lab 5 Testing
+Assignment 1 Testing
 -------------------------------------------------------
 Author:  Tyler Wehrle
 ID:      169056772
@@ -9,9 +9,17 @@ __updated__ = "2024-01-01"
 -------------------------------------------------------
 """
 
-from utilities import stack_test
-from Food_utilities import read_foods
+# Imports
+from Food import Food
+from Food_utilities import *
 
 fh = open("foods.txt", "r")
 
-stack_test(read_foods(fh))
+foods = read_foods(fh)
+origin = 7
+foods = by_origin(foods, origin)
+avg = calories_by_origin(foods, origin)
+
+print(f"ORIGIN: {Food.ORIGIN[origin]}, calories: {avg}")
+
+fh.close()

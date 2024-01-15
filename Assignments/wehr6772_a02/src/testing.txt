@@ -1,0 +1,143 @@
+"""
+-------------------------------------------------------
+Lab/Assignment  Testing
+-------------------------------------------------------
+Author:  Tyler Wehrle
+ID:      169056772
+Email:   wehr6772@mylaurier.ca
+Version: 2024-01-01
+-------------------------------------------------------
+"""
+-------------------------------------------------------
+t01
+-------------------------------------------------------
+
+ORIGIN: Ethiopian
+Name:       Vegetable Alicha
+Origin:     Ethiopian
+Vegetarian: True
+Calories:   138
+
+ORIGIN: Japanese
+Name:       Chirashi Don
+Origin:     Japanese
+Vegetarian: False
+Calories:   600
+Name:       Natto
+Origin:     Japanese
+Vegetarian: True
+Calories:   212
+Name:       Teppanyaki
+Origin:     Japanese
+Vegetarian: False
+Calories:   200
+Name:       Teriyaki
+Origin:     Japanese
+Vegetarian: False
+Calories:   233
+
+ORIGIN: American
+Name:       Turducken
+Origin:     American
+Vegetarian: False
+Calories:   12240
+Name:       Diet Free-Range Gluten-free Water
+Origin:     American
+Vegetarian: True
+Calories:   0
+Name:       Chicken Wings
+Origin:     American
+Vegetarian: False
+Calories:   298
+
+-------------------------------------------------------
+t02
+-------------------------------------------------------
+
+Average calories: 791.4418604651163
+
+-------------------------------------------------------
+t03
+-------------------------------------------------------
+
+ORIGIN: Indian, calories: 328.5
+
+ORIGIN: Italian, calories: 386.0
+
+ORIGIN: American, calories: 4179.333333333333
+
+-------------------------------------------------------
+t04
+-------------------------------------------------------
+
+Food                                Origin       Vegetarian Calories
+----------------------------------- ------------ ---------- --------
+Lasagna                             Italian           False      135
+Butter Chicken                      Indian            False      490
+Moo Goo Guy Pan                     Chinese           False      272
+Vegetable Alicha                    Ethiopian          True      138
+Spanakopita                         Greek              True      260
+Chirashi Don                        Japanese          False      600
+Canuck Burger                       Canadian          False     7500
+Turducken                           American          False    12240
+Shark Fin Soup                      Chinese           False       46
+Chamuco                             Mexican            True      150
+Natto                               Japanese           True      212
+Canada Goose Chili                  Canadian          False      199
+Diet Free-Range Gluten-free Water   American           True        0
+Kung Pao Chicken                    Chinese           False      229
+General Tao Chicken                 Chinese           False      850
+Spicy Vegetable Moo Shu             Chinese            True      140
+BBQ Pork                            Chinese           False      920
+Orange Chicken                      Chinese           False      800
+Vegetables with Cashew Nuts         Chinese            True      143
+Lemon Chicken                       Chinese           False      226
+Beef with Green Pepper              Chinese           False      251
+Sweet and Sour Pork                 Chinese           False      231
+Szechuan Shrimp                     Chinese           False      516
+Poutine                             Canadian          False      710
+Teppanyaki                          Japanese          False      200
+Greek Salad                         Greek              True      185
+Fettuccine                          Italian           False      266
+Teriyaki                            Japanese          False      233
+Shortbread                          Scottish           True      502
+Pavlova                             New Zealand        True      272
+Hokey Pokey Ice Cream               New Zealand        True      106
+Fricot                              Canadian          False      360
+Chip Butty                          English            True      956
+Grilled Salmon                      Canadian          False      511
+Ravioli                             Italian           False      246
+Crepe                               Italian            True      186
+Fried Rice                          Chinese           False      425
+Pepperoni Pizza                     Italian           False      713
+Chicken Kabob                       Indian            False      167
+Panzerotti                          Italian           False      770
+Spring Rolls                        Chinese            True      200
+Chicken Chow Mein                   Chinese           False      178
+Chicken Wings                       American          False      298
+
+-------------------------------------------------------
+t05
+-------------------------------------------------------
+
+ORIGIN: Italian, max calories: 0, vegetarian: True
+Name:       Crepe
+Origin:     Italian
+Vegetarian: True
+Calories:   186
+
+ORIGIN: Indian, max calories: 400, vegetarian: False
+Name:       Chicken Kabob
+Origin:     Indian
+Vegetarian: False
+Calories:   167
+
+ORIGIN: Indian, max calories: 0, vegetarian: False
+Name:       Butter Chicken
+Origin:     Indian
+Vegetarian: False
+Calories:   490
+Name:       Chicken Kabob
+Origin:     Indian
+Vegetarian: False
+Calories:   167

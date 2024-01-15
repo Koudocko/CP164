@@ -155,7 +155,9 @@ def is_valid(name):
 
     valid = True 
 
-    if not name[0].isalpha() and not name[0] == '_':
+    if len(name) > 0:
+        valid = False
+    elif not name[0].isalpha() and not name[0] == '_':
         valid = False 
     for char in name:
         if not char.isalnum() and not char == '_':
@@ -219,7 +221,7 @@ def matrix_stats(a):
 
             total += ele
 
-    average = total / len(a) * len(a[0])
+    average = total / (len(a) * len(a[0]))
 
     return (small, large, total, average)
 

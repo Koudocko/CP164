@@ -1,6 +1,6 @@
 """
 -------------------------------------------------------
-Lab 3 Testing
+Assignment 1 Testing
 -------------------------------------------------------
 Author:  Tyler Wehrle
 ID:      169056772
@@ -9,17 +9,15 @@ __updated__ = "2024-01-01"
 -------------------------------------------------------
 """
 
-from Stack_array import Stack
-from utilities import stack_to_array
+# Imports
+from Food import Food
+from Food_utilities import *
 
-s = Stack()
-for i in range(1, 6):
-    s.push(i)
+fh = open("foods.txt", "r")
 
-source = []
+foods = read_foods(fh)
+avg = average_calories(foods)
 
-print(f"Stack top: {s.peek()}")
+print(f"Average calories: {avg}")
 
-print(f"List before: {source}")
-stack_to_array(s, source)
-print(f"List after: {source}")
+fh.close()

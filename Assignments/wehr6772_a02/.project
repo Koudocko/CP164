@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>login_data_structures</name>
+	<name>wehr6772_a02</name>
 	<comment></comment>
-	<projects>
-	</projects>
+  <projects>
+  		<project>wehr6772_data_structures</project>
+  </projects>
 	<buildSpec>
 		<buildCommand>
 			<name>org.python.pydev.PyDevBuilder</name>
