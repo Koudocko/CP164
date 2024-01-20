@@ -10,6 +10,7 @@ __updated__ = "2024-01-01"
 """
 
 from Food import Food
+from copy import deepcopy
 
 def get_food():
     """
@@ -213,10 +214,13 @@ def food_table(foods):
     """
 
     # Your code here
+    foods_copy = deepcopy(foods)
+    foods_copy.sort()
+
     print("Food                                Origin       Vegetarian Calories")
     print("----------------------------------- ------------ ---------- --------")
 
-    for food in foods:
+    for food in foods_copy:
         veg_offset = 23 - len(Food.ORIGIN[food.origin])
         print(f"{food.name:<36s}{Food.ORIGIN[food.origin]}{str(food.is_vegetarian):>{veg_offset}}{food.calories:>9}")
 
@@ -245,7 +249,7 @@ def food_search(foods, origin, max_cals, is_veg):
     result = []
 
     for food in foods:
-        if food.origin == origin:
+        if food.origin == -1 or food.origin == origin:
             if max_cals == 0 or food.calories <= max_cals:
                 if not is_veg or food.is_vegetarian == is_veg:
                     result.append(food)
