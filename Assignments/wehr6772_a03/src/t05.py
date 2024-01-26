@@ -1,6 +1,6 @@
 """
 -------------------------------------------------------
-Assignment 2 Testing
+Assignment 3 Testing
 -------------------------------------------------------
 Author:  Tyler Wehrle
 ID:      169056772
@@ -10,13 +10,9 @@ __updated__ = "2024-01-01"
 """
 
 # Imports
-from Food import Food
-from Food_utilities import *
+from functions import is_palindrome_stack
 
-fh = open("foods.txt", "r")
+string = "1O2P3O4"
+palindrome = is_palindrome_stack(string)
 
-foods = read_foods(fh)
-
-food_table(foods)
-
-fh.close()
+print(f"is_palindrome_stack('{string}') -> {palindrome}")

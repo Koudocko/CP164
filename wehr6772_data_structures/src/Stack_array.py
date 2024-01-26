@@ -41,7 +41,13 @@ class Stack:
             None
         -------------------------------------------------------
         """
+
         # Your code here
+        while not source1.is_empty() or not source2.is_empty():
+            if not source1.is_empty():
+                self._values.append(deepcopy(source1.pop()))
+            if not source2.is_empty():
+                self._values.append(deepcopy(source2.pop()))
 
         return
 
@@ -124,7 +130,14 @@ class Stack:
             None
         -------------------------------------------------------
         """
+
         # Your code here
+        reverse = []
+
+        while len(self._values) > 0:
+            reverse.append(self._values.pop())
+
+        self._values = reverse
 
         return
 

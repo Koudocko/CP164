@@ -1,6 +1,6 @@
 """
 -------------------------------------------------------
-Assignment 2 Testing
+Assignment 3 Testing
 -------------------------------------------------------
 Author:  Tyler Wehrle
 ID:      169056772
@@ -10,13 +10,9 @@ __updated__ = "2024-01-01"
 """
 
 # Imports
-from Food import Food
-from Food_utilities import *
+from functions import stack_maze
 
-fh = open("foods.txt", "r")
+maze = {'Start': ['A'], 'A':['B'], 'B':['A']}
+path = stack_maze(maze)
 
-foods = read_foods(fh)
-
-food_table(foods)
-
-fh.close()
+print(f"stack_maze({maze})-> {path}")
