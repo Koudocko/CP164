@@ -145,3 +145,34 @@ class Priority_Queue:
         """
         for value in self._values:
             yield value
+
+    def split_key(self, key):
+        """
+        -------------------------------------------------------
+        Splits a priority queue into two depending on an external
+        priority key. The source priority queue is empty when the method
+        ends. The order of the values from source is preserved.
+        Use: target1, target2 = source.split_key(key)
+        -------------------------------------------------------
+        Parameters:
+            key - a data object (?)
+        Returns:
+            target1 - a priority queue that contains all values
+                with priority higher than key (Priority_Queue)
+            target2 - priority queue that contains all values with
+                priority lower than or equal to key (Priority_Queue)
+        -------------------------------------------------------
+        """
+
+        target1 = Priority_Queue()
+        target2 = Priority_Queue()
+
+        while len(self._values) > 0:
+            assert self._first != None
+
+            if self._values[self._first] < key:
+                target1.insert(deepcopy(self.remove()))
+            else:
+                target2.insert(deepcopy(self.remove()))
+
+        return (target1, target2)

@@ -130,3 +130,61 @@ class Queue:
         """
         for value in self._values:
             yield value
+
+    def __eq__(self, target):
+        """
+        ----------------
+        Determines whether two Queues are equal.
+        Values in self and target are compared and if all values are equal
+        and in the same order, returns True, otherwise returns False.
+        Use: equals = source == target
+        ---------------
+        Parameters:
+            target - a queue (Queue)
+        Returns:
+            equals - True if source contains the same values
+                as target in the same order, otherwise False. (boolean)
+        ---------------
+        """
+
+        equals = True
+
+        if len(self._values) == len(target._values):
+            for i in range(0, len(self._values)):
+                if self._values[i] != target._values[i]:
+                    equals = False
+                    break
+        else:
+            equals = False
+
+        return equals
+
+    def split_alt(self):
+        """
+        -------------------------------------------------------
+        Splits the source queue into separate target queues with values
+        alternating into the targets. At finish source queue is empty.
+        Order of source values is preserved.
+        (iterative algorithm)
+        Use: target1, target2 = source.split_alt()
+        -------------------------------------------------------
+        Returns:
+            target1 - contains alternating values from source (Queue)
+            target2 - contains remaining values from source (Queue)
+        -------------------------------------------------------
+        """
+
+        target1 = Queue()
+        target2 = Queue()
+        switch = True
+
+        while len(self._values) > 0:
+            if switch:
+                target1._values.append(deepcopy(self._values.pop(0)))
+            else:
+                target2._values.append(deepcopy(self._values.pop(0)))
+
+            switch = not switch
+
+        return (target1, target2)
+

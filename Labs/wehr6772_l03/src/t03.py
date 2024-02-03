@@ -9,9 +9,6 @@ __updated__ = "2024-01-01"
 -------------------------------------------------------
 """
 
-import sys,os
-sys.path.append(os.path.realpath('../../../login_data_structures/src'))
-
 from Queue_array import Queue
 from utilities import array_to_queue, queue_to_array, queue_test
 

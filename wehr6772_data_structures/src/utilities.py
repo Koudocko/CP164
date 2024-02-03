@@ -12,6 +12,7 @@ __updated__ = "2024-01-01"
 from Stack_array import Stack
 from Queue_array import Queue
 from Priority_Queue_array import Priority_Queue
+from List_array import List
 
 def array_to_stack(stack, source):
     """
@@ -217,5 +218,78 @@ def priority_queue_test(a):
     print(f"insert(0) {pq.insert(0)}")
     print(f"peek() {pq.peek()}")
     print(f"remove() {pq.remove()}")
+
+    return
+
+def array_to_list(llist, source):
+    """
+    -------------------------------------------------------
+    Appends contests of source to llist. At finish, source is empty.
+    Last element in source is at rear of llist,
+    first element in source is at front of llist.
+    Use: array_to_list(llist, source)
+    -------------------------------------------------------
+    Parameters:
+        llist - a List object (List)
+        source - a Python list (list)
+    Returns:
+        None
+    -------------------------------------------------------
+    """
+
+    while len(source) > 0:
+        llist.insert(0, source.pop())
+
+    return
+
+def list_to_array(llist, target):
+    """
+    -------------------------------------------------------
+    Removes contents of llist into target. At finish, llist is empty.
+    Front element of llist is at front of target,
+    rear element of llist is at rear of target.
+    Use: list_to_array(llist, target)
+    -------------------------------------------------------
+    Parameters:
+        llist - a List object (List)
+        target - a Python list (list)
+    Returns:
+        None
+    -------------------------------------------------------
+    """
+
+    while not llist.is_empty():
+        target.insert(0, llist.pop())
+
+    return
+
+def list_test(source):
+    """
+    -------------------------------------------------------
+    Tests List implementation.
+    The methods of List are tested for both empty and
+    non-empty lists using the data in source
+    Use: list_test(source)
+    -------------------------------------------------------
+    Parameters:
+        source - list of data (list of ?)
+    Returns:
+        None
+    -------------------------------------------------------
+    """
+    lst = List()
+    array_to_list(lst, source)
+
+    # tests for the List methods go here
+    # print the results of the method calls and verify by hand
+    print(f"is_empty() {lst.is_empty()}")
+    print(f"insert(0, 1) {lst.insert(0, 1)}")
+    print(f"append(1) {lst.append(1)}")
+    print(f"remove(1) {lst.remove(1)}")
+    print(f"index(1) {lst.index(1)}")
+    print(f"find(1) {lst.find(1)}")
+    print(f"count() {lst.count(1)}")
+    print(f"max() {lst.max()}")
+    print(f"min() {lst.min()}")
 
     return
