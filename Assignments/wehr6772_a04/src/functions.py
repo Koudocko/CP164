@@ -39,9 +39,9 @@ def queue_split_alt(source):
 
     while not source.is_empty():
         if switch:
-            target1.insert(deepcopy(source.remove()))
+            target1.insert(source.remove())
         else:
-            target2.insert(deepcopy(source.remove()))
+            target2.insert(source.remove())
 
         switch = not switch
 
@@ -71,8 +71,8 @@ def pq_split_key(source, key):
 
     while not source.is_empty():
         if source.peek() < key:
-            target1.insert(deepcopy(source.remove()))
+            target1.insert(source.remove())
         else:
-            target2.insert(deepcopy(source.remove()))
+            target2.insert(source.remove())
 
     return (target1, target2)

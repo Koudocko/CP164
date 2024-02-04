@@ -128,6 +128,12 @@ class Priority_Queue:
         """
 
         # your code here
+        if len(self._values) > 0:
+            for idx, ele in enumerate(self._values):
+                if self._first == None or ele < self._values[self._first]:
+                    self._first = idx
+        else:
+            self._first = None
 
         return
 
@@ -170,9 +176,13 @@ class Priority_Queue:
         while len(self._values) > 0:
             assert self._first != None
 
-            if self._values[self._first] < key:
-                target1.insert(deepcopy(self.remove()))
+            if self._values[0] < key:
+                target1._values.append(self._values.pop(0))
             else:
-                target2.insert(deepcopy(self.remove()))
+                target2._values.append(self._values.pop(0))
+
+        self._first = None
+        target1._set_first()
+        target2._set_first()
 
         return (target1, target2)

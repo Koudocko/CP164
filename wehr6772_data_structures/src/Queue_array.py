@@ -180,9 +180,9 @@ class Queue:
 
         while len(self._values) > 0:
             if switch:
-                target1._values.append(deepcopy(self._values.pop(0)))
+                target1._values.append(self._values.pop(0))
             else:
-                target2._values.append(deepcopy(self._values.pop(0)))
+                target2._values.append(self._values.pop(0))
 
             switch = not switch
 
