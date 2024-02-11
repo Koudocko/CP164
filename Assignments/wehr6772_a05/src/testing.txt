@@ -1,0 +1,229 @@
+"""
+-------------------------------------------------------
+Lab/Assignment  Testing
+-------------------------------------------------------
+Author:  Tyler Wehrle
+ID:      169056772
+Email:   wehr6772@mylaurier.ca
+Version: 2024-01-01
+-------------------------------------------------------
+"""
+-------------------------------------------------------
+t01
+-------------------------------------------------------
+
+List 1 contents:
+1 2 3 2 1
+
+List 2 contents:
+1 2 3 2 1
+
+List 1 == list 2: True
+
+List 1 item at idx 2: 3
+
+list1.append(100)
+
+List 1 contents:
+1 2 3 2 1 100
+
+List 1 == list 2: False
+
+list1.clean()
+
+List 1 contents:
+1 2 3 100
+
+List 3 contents:
+50 50 50 50 50
+
+List 4 contents:
+-50 -50 -50 -50 -50
+
+list1.combine(list3, list4)
+
+List 1 contents:
+1 2 3 100 50 -50 50 -50 50 -50 50 -50 50 -50
+
+list3.append(1000)
+list4.append(1000)
+
+list1.intersection(list3, list4)
+
+List 1 contents:
+1 2 3 100 50 -50 50 -50 50 -50 50 -50 50 -50 1000
+
+list1.prepend(1000)
+
+List 1 contents:
+1000 1 2 3 100 50 -50 50 -50 50 -50 50 -50 50 -50 1000
+
+list1.remove_front()
+
+List 1 contents:
+1 2 3 100 50 -50 50 -50 50 -50 50 -50 50 -50 1000
+
+list1.remove_many(50)
+list1.remove_many(-50)
+
+List 1 contents:
+1 2 3 100 1000
+
+list5, list6 = list1.split()
+List 5 contents:
+1 2 3
+
+List 6 contents:
+100 1000
+
+List 1 contents:
+
+
+list1.insert(1) x3
+list1.insert(0) x3
+
+List 1 contents:
+1 0 1 0 1 0
+
+list7, list8 = list1.split_alt()
+List 7 contents:
+1 1 1
+
+List 8 contents:
+0 0 0
+
+List 1 contents:
+
+
+list1.union(list7, list8)
+
+List 1 contents:
+1 1 0
+
+-------------------------------------------------------
+t02
+-------------------------------------------------------
+
+Sorted_List 1 contents:
+1 1 2 2 3
+
+Sorted_List 1 contains 3: True
+Sorted_List 1 contains 100: False
+
+Sorted_List 2 contents:
+1 1 2 2 3
+
+Sorted_List 1 == list 2: True
+
+Sorted_List 1 item at idx 2: 2
+
+list1.insert(100)
+
+Sorted_List 1 contents:
+1 1 2 2 3 100
+
+Sorted_List 1 == list 2: False
+
+list1.clean()
+
+Sorted_List 1 contents:
+1 2 3 100
+
+list1.count(100): 1
+
+list1.insert(100)
+
+list1.count(100): 2
+
+list1.find(100): 100
+
+list1.find(100): None
+
+Sorted_List 1 contents:
+1 2 3 100 100
+
+list1.index(100): 3
+
+Sorted_List 3 contents:
+-100 50 50 50 50 50
+
+Sorted_List 4 contents:
+-100 -50 -50 -50 -50 -50
+
+list1.intersection(list3, list4)
+
+Sorted_List 1 contents:
+-100 1 2 3 100 100
+
+list1.max(): 100
+
+list1.min(): -100
+
+list1.peek(): -100
+
+list1.remove(100): 100
+
+Sorted_List 1 contents:
+-100 1 2 3 100
+
+list1.remove(1000): None
+
+list1.remove_front(): -100
+
+Sorted_List 1 contents:
+1 2 3 100
+
+list1.insert(0) x5
+
+Sorted_List 1 contents:
+0 0 0 0 0 1 2 3 100
+
+list1.remove_many(50)
+Sorted_List 1 contents:
+1 2 3 100
+
+list5, list6 = list1.split()
+Sorted_List 5 contents:
+1 2
+
+Sorted_List 6 contents:
+3 100
+
+Sorted_List 1 contents:
+
+
+list1.insert(1) x3
+list1.insert(0) x3
+
+Sorted_List 1 contents:
+0 0 0 1 1 1
+
+list7, list8 = list1.split_alt()
+Sorted_List 7 contents:
+0 0 1
+
+Sorted_List 8 contents:
+0 1 1
+
+Sorted_List 1 contents:
+
+
+Updated list1 with elements
+
+Sorted_List 1 contents:
+1 1 2 3 4 5 27 100
+
+list9, list10 = list1.split_key(7)
+Sorted_List 9 contents:
+1 1 2 3 4
+
+Sorted_List 10 contents:
+5 27 100
+
+Sorted_List 1 contents:
+
+
+list1.union(list9, list10)
+
+Sorted_List 1 contents:
+1 2 3 4 5 27 100
