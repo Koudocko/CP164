@@ -502,6 +502,26 @@ class List:
         -------------------------------------------------------
         """
         # your code here
+        self._rear = self._front
+        previous = None
+        current = self._front
+
+        while current is not None:
+            temp = current._next
+            current._next = previous
+            previous = current
+            current = temp
+
+        self._front = previous
+        return
+
+    def _rr_aux(self, prev, curr):
+        if curr is not None:
+            temp = curr._next
+            curr._next = prev
+
+            self._rr_aux(curr, temp)
+
         return
 
     def reverse_r(self):
@@ -517,6 +537,12 @@ class List:
         -------------------------------------------------------
         """
         # your code here
+        self._rr_aux(None, self._front)
+
+        temp = self._front
+        self._front = self._rear
+        self._rear = temp
+
         return
 
     def clean(self):
@@ -679,6 +705,28 @@ class List:
         -------------------------------------------------------
         """
         # your code here
+        target1 = List()
+        target2 = List()
+        left = True
+
+        while self._front is not None:
+
+            if left:
+                target1._move_front_to_rear(self)
+            else:
+                target2._move_front_to_rear(self)
+            left = not left
+        return target1, target2
+    
+    def _sar_aux(self, even, odd, flip):
+        if self._count > 0:
+            if flip:
+                even._move_front_to_rear(self)
+            else:
+                odd._move_front_to_rear(self)
+
+            self._sar_aux(even, odd, not flip)
+
         return
 
     def split_alt_r(self):
@@ -698,7 +746,20 @@ class List:
         -------------------------------------------------------
         """
         # your code here
-        return
+
+        even, odd = List(), List()
+        self._sar_aux(even, odd, True)
+
+        return (even, odd)
+
+    def _lsr_aux(self, key, previous, current, index):
+        if current is None:
+            index = -1
+        elif current._value != key:
+            previous, current, index = self._lsr_aux(key, current, current._next, index + 1)
+        
+        return (previous, current, index)
+
 
     def _linear_search_r(self, key):
         """
@@ -717,7 +778,9 @@ class List:
         -------------------------------------------------------
         """
         # your code here
-        return
+        previous, current, index = self._lsr_aux(key, None, self._front, 0)
+
+        return (previous, current, index)
 
     def intersection(self, source1, source2):
         """
@@ -735,7 +798,38 @@ class List:
             None
         -------------------------------------------------------
         """
-        # your code here
+        source1_node = source1._front
+
+        while source1_node is not None:
+            value = source1_node._value
+            _, current, _ = source2._linear_search(value)
+
+            if current is not None:
+                # Value exists in both source lists.
+                _, current, _ = self._linear_search(value)
+
+                if current is None:
+                    # Value does not appear in target list.
+                    self.append(value)
+
+            source1_node = source1_node._next
+        return
+
+    def _ir_aux(self, source1_h, source2):
+        if source1_h is not None:
+            if (    source2._linear_search(source1_h._value)[1] is not None and
+                    self._linear_search(source1_h._value)[1] is None ):
+                if self._rear is None:
+                    self._rear = _List_Node(deepcopy(source1_h._value), None)
+                    self._front = self._rear
+                else:
+                    self._rear._next = _List_Node(deepcopy(source1_h._value), None)
+                    self._rear = self._rear._next
+
+                self._count += 1
+
+            self._ir_aux(source1_h._next, source2)
+
         return
 
     def intersection_r(self, source1, source2):
@@ -755,6 +849,8 @@ class List:
         -------------------------------------------------------
         """
         # your code here
+        self._ir_aux(source1._front, source2) 
+
         return
 
     def union(self, source1, source2):
@@ -774,6 +870,54 @@ class List:
         -------------------------------------------------------
         """
         # your code here
+        source1_node = source1._front
+
+        while source1_node is not None:
+            value = source1_node._value
+            _, current, _ = self._linear_search(value)
+
+            if current is None:
+                # Value does not exist in new list.
+                self.append(value)
+            source1_node = source1_node._next
+
+        source2_node = source2._front
+
+        while source2_node is not None:
+            value = source2_node._value
+            _, current, _ = self._linear_search(value)
+
+            if current is None:
+                # Value does not exist in current list.
+                self.append(value)
+
+            source2_node = source2_node._next
+        return
+
+
+    def _ur_aux(self, source1, source2):
+        if source1 is not None:
+            curr = source1
+            source1 = source1._next
+        elif source2 is not None:
+            curr = source2
+            source2 = source2._next
+        else:
+            curr = None
+
+        if curr is not None:
+            if self._linear_search(curr._value)[1] is None:
+                if self._rear is None:
+                    self._rear = _List_Node(deepcopy(curr._value), None)
+                    self._front = self._rear
+                else:
+                    self._rear._next = _List_Node(deepcopy(curr._value), None)
+                    self._rear = self._rear._next
+
+                self._count += 1
+
+            self._ur_aux(source1, source2)
+
         return
 
     def union_r(self, source1, source2):
@@ -793,6 +937,8 @@ class List:
         -------------------------------------------------------
         """
         # your code here
+        self._ur_aux(source1._front, source2._front) 
+
         return
 
     def clean_r(self):
@@ -909,6 +1055,22 @@ class List:
             "Cannot move the front of an empty List"
 
         # your code here
+        if self._rear is not None:
+            self._rear._next = source._front
+            self._rear = self._rear._next
+        else:
+            self._rear = source._front
+            self._front = self._rear
+
+        source._front = source._front._next
+        self._rear._next = None
+
+        if source._front is None:
+            source._rear = None
+
+        self._count += 1
+        source._count -= 1
+
         return
 
     def combine(self, source1, source2):
@@ -969,3 +1131,50 @@ class List:
         while current is not None:
             yield current._value
             current = current._next
+
+    def is_identical(self, target):
+        """
+        ---------------------------------------------------------
+        Determines whether two lists are identical.
+        (iterative version)
+        Use: b = source.is_identical(target)
+        -------------------------------------------------------
+        Parameters:
+            target - another list (List)
+        Returns:
+            identical - True if this list contains the same values as
+                target in the same order, otherwise False. (bool)
+        -------------------------------------------------------
+        """
+        if self._count != target._count:
+            identical = False
+        else:
+            source_node = self._front
+            target_node = target._front
+
+            while source_node is not None and source_node._value == target_node._value:
+                source_node = source_node._next
+                target_node = target_node._next
+
+            identical = source_node is None
+        return identical
+    
+    def _iir_aux(self, source, target):
+        if source is not None:
+            if source._value != target._value:
+                identical = False
+            else:
+                identical = self._iir_aux(source._next, target._next)
+        else:
+            identical = True
+
+        return identical
+
+    def is_identical_r(self, target):
+        if self._count == target._count:
+            identical = self._iir_aux(self._front, target._front)
+        else:
+            identical = False
+        
+        return identical
+
