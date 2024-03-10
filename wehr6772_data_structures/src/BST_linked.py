@@ -217,44 +217,44 @@ class BST:
             value - value in node containing key, None otherwise.
         -------------------------------------------------------
         """
-        if node is None:
-            # Base Case: the key is not in the tree.
-            value = None
-        elif key < node._value:
-            # Search the left subtree.
-            node._left, value = self._remove_aux(node._left, key)
-        elif key > node._value:
-            # Search the right subtree.
-            node._right, value = self._remove_aux(node._right, key)
-        else:
-            # Value has been found.
-            value = node._value
-            self._count -= 1
-            # Replace this node with another node.
-            if node._left is None and node._right is None:
-                # node has no children.
+        # if node is None:
+        #     # Base Case: the key is not in the tree.
+        #     value = None
+        # elif key < node._value:
+        #     # Search the left subtree.
+        #     node._left, value = self._remove_aux(node._left, key)
+        # elif key > node._value:
+        #     # Search the right subtree.
+        #     node._right, value = self._remove_aux(node._right, key)
+        # else:
+        #     # Value has been found.
+        #     value = node._value
+        #     self._count -= 1
+        #     # Replace this node with another node.
+        #     if node._left is None and node._right is None:
+        #         # node has no children.
 
-                # your code here
+        #         # your code here
 
-            elif node._left is None:
-                # node has no left child.
+        #     elif node._left is None:
+        #         # node has no left child.
 
-                # your code here
+        #         # your code here
 
-            elif node._right is None:
-                # node has no right child.
+        #     elif node._right is None:
+        #         # node has no right child.
 
-                # your code here
+        #         # your code here
 
-            else:
-                # Node has two children
+        #     else:
+        #         # Node has two children
 
-                # your code here
+        #         # your code here
 
-        if node is not None and value is not None:
-            # If the value was found, update the ancestor heights.
-            node._update_height()
-        return node, value
+        # if node is not None and value is not None:
+        #     # If the value was found, update the ancestor heights.
+        #     node._update_height()
+        # return node, value
 
     def _delete_node_left(self, parent):
         """

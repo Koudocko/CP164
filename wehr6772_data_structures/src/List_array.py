@@ -55,8 +55,9 @@ class List:
         -------------------------------------------------------
         """
         # Your code here
+        length = len(self._values)
 
-        return
+        return length
 
     def __setitem__(self, i, value):
         """
