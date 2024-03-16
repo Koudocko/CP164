@@ -198,7 +198,11 @@ class BST:
             value - value matching key if found, otherwise None.
         -------------------------------------------------------
         """
-        self._root, value = self._remove_aux(self._root, key)
+        value = None
+
+        if self._root is not None:
+            self._root, value = self._remove_aux(self._root, key)
+
         return value
 
     def _remove_aux(self, node, key):
@@ -217,44 +221,47 @@ class BST:
             value - value in node containing key, None otherwise.
         -------------------------------------------------------
         """
-        # if node is None:
-        #     # Base Case: the key is not in the tree.
-        #     value = None
-        # elif key < node._value:
-        #     # Search the left subtree.
-        #     node._left, value = self._remove_aux(node._left, key)
-        # elif key > node._value:
-        #     # Search the right subtree.
-        #     node._right, value = self._remove_aux(node._right, key)
-        # else:
-        #     # Value has been found.
-        #     value = node._value
-        #     self._count -= 1
-        #     # Replace this node with another node.
-        #     if node._left is None and node._right is None:
-        #         # node has no children.
+        if node is None:
+            # Base Case: the key is not in the tree.
+            value = None
+        elif key < node._value:
+            # Search the left subtree.
+            node._left, value = self._remove_aux(node._left, key)
+        elif key > node._value:
+            # Search the right subtree.
+            node._right, value = self._remove_aux(node._right, key)
+        else:
+            # Value has been found.
+            value = node._value
+            self._count -= 1
+            # Replace this node with another node.
+            if node._left is None and node._right is None:
+                # node has no children.
 
-        #         # your code here
+                # your code here
+                node = None
+            elif node._left is None:
+                # node has no left child.
 
-        #     elif node._left is None:
-        #         # node has no left child.
+                # your code here
+                node = node._right
+            elif node._right is None:
+                # node has no right child.
 
-        #         # your code here
+                # your code here
+                node = node._left
 
-        #     elif node._right is None:
-        #         # node has no right child.
+            else:
+                # Node has two children
 
-        #         # your code here
+                # your code here
+                node = None
 
-        #     else:
-        #         # Node has two children
 
-        #         # your code here
-
-        # if node is not None and value is not None:
-        #     # If the value was found, update the ancestor heights.
-        #     node._update_height()
-        # return node, value
+        if node is not None and value is not None:
+            # If the value was found, update the ancestor heights.
+            node._update_height()
+        return node, value
 
     def _delete_node_left(self, parent):
         """
@@ -273,8 +280,10 @@ class BST:
         """
 
         # your code here
+        # if parent._left is not None and parent._right is not None:
 
-        return repl_node
+
+        # return repl_node
 
     def __contains__(self, key):
         """
@@ -307,6 +316,24 @@ class BST:
         # your code here
 
 
+    def _eq_aux(self, node1, node2):
+        equals = True
+
+        if node1 is not None and node2 is not None:
+            if node1._value != node2._value:
+                equals = False
+            else:
+                if node1._left is not None or node2._left is not None:
+                    equals = self._eq_aux(node1._left, node2._left)
+                if node1._right is not None or node2._right is not None:
+                    equals = self._eq_aux(node1._right, node2._right)
+        elif node1 is None != node2 is None:
+            equals = False
+        else:
+            equals = False
+
+        return equals
+
     def __eq__(self, target):
         """
         ---------------------------------------------------------
@@ -324,6 +351,10 @@ class BST:
         """
 
         # your code here
+        if self._root is None and target._root is None:
+            equals = True
+        else:
+            equals = self._eq_aux(self._root, target._root)
 
         return equals
 
@@ -393,6 +424,18 @@ class BST:
 
         # your code here
 
+    def _min_aux(self, min, node):
+        if node is not None:
+            if node._value < min:
+                min = node._value
+
+            if node._left is not None:
+                min = self._min_aux(min, node._left)
+            if node._right is not None:
+                min = self._min_aux(min, node._right)
+
+        return min
+
 
     def min(self):
         """
@@ -407,6 +450,9 @@ class BST:
         assert self._root is not None, "Cannot find minimum of an empty BST"
 
         # your code here
+        value = deepcopy(self._min_aux(self._root._value, self._root))
+
+        return value
 
 
     def min_r(self):
@@ -423,6 +469,19 @@ class BST:
 
         # your code here
 
+    def _leaf_count_aux(self, node):
+        count = 0
+
+        if node is not None:
+            if node._left is not None or node._right is not None:
+                if node._left is not None:
+                    count += self._leaf_count_aux(node._left)
+                if node._right is not None:
+                    count += self._leaf_count_aux(node._right)
+            else:
+                count = 1
+
+        return count
 
     def leaf_count(self):
         """
@@ -436,7 +495,20 @@ class BST:
         """
 
         # your code here
+        count = self._leaf_count_aux(self._root)
 
+        return count
+
+    def _two_child_count_aux(self, node):
+        count = 0
+
+        if node is not None:
+            if node._left is not None and node._right is not None:
+                count = ( self._two_child_count_aux(node._left)
+                    + self._two_child_count_aux(node._right)
+                    + 1 )
+
+        return count
 
     def two_child_count(self):
         """
@@ -450,7 +522,23 @@ class BST:
         """
 
         # your code here
+        count = self._two_child_count_aux(self._root)
 
+        return count
+
+    def _one_child_count_aux(self, node):
+        count = 0
+
+        if node is not None:
+            if (node._left is None) != (node._right is None):
+                count = 1
+
+            if node._left is not None:
+                count += self._one_child_count_aux(node._left)
+            if node._right is not None:
+                count += self._one_child_count_aux(node._right)
+
+        return count
 
     def one_child_count(self):
         """
@@ -464,6 +552,9 @@ class BST:
         """
 
         # your code here
+        count = self._one_child_count_aux(self._root)
+
+        return count
 
 
     def node_counts(self):
@@ -482,6 +573,21 @@ class BST:
         # your code here
 
 
+    def _is_balanced_aux(self, curr):
+        balanced = True
+
+        if curr is not None:
+            if abs(self._node_height(curr._left) -
+                     self._node_height(curr._right)) > 1:
+                balanced = False
+            else:
+                balanced = self._is_balanced_aux(curr._left)
+
+                if balanced:
+                    balanced = self._is_balanced_aux(curr._right)
+
+        return balanced
+
     def is_balanced(self):
         """
         ---------------------------------------------------------
@@ -495,7 +601,9 @@ class BST:
         """
 
         # your code here
+        balanced = self._is_balanced_aux(self._root)
 
+        return balanced
 
     def _node_height(self, node):
         """
@@ -531,6 +639,24 @@ class BST:
 
         # your code here
 
+    def _is_valid_aux(self, prev_value, node, left):
+        valid = True
+
+        if node is not None:
+            if left:
+                if node._value > prev_value:
+                    valid = False
+            else:
+                if node._value <= prev_value:
+                    valid = False
+
+            if valid:
+                valid = self._is_valid_aux(node._value, node._left, True)
+            if valid:
+                valid = self._is_valid_aux(node._value, node._right, False)
+
+        return valid
+
 
     def is_valid(self):
         """
@@ -547,7 +673,30 @@ class BST:
         """
 
         # your code here
+        valid = True
 
+        if self._root is not None:
+            valid = self._is_valid_aux(self._root._value, self._root._left, True)
+
+            if valid:
+                valid = self._is_valid_aux(self._root._value, self._root._right, False)
+
+        return valid
+
+    def _inorder_aux(self, node):
+        elements = []
+
+        if node is not None:
+            if node._left is not None:
+                elements += self._inorder_aux(node._left)
+
+            elements.append(deepcopy(node._value))
+
+            if node._right is not None:
+                elements += self._inorder_aux(node._right)
+
+
+        return elements
 
     def inorder(self):
         """
@@ -561,7 +710,24 @@ class BST:
         """
 
         # your code here
+        a = self._inorder_aux(self._root)
 
+        return a
+
+    def _preorder_aux(self, node):
+        elements = []
+
+        if node is not None:
+            elements.append(deepcopy(node._value))
+
+            if node._left is not None:
+                elements += self._preorder_aux(node._left)
+
+            if node._right is not None:
+                elements += self._preorder_aux(node._right)
+
+
+        return elements
 
     def preorder(self):
         """
@@ -575,7 +741,25 @@ class BST:
         """
 
         # your code here
+        a = self._preorder_aux(self._root)
 
+        return a
+
+
+    def _postorder_aux(self, node):
+        elements = []
+
+        if node is not None:
+            if node._left is not None:
+                elements += self._postorder_aux(node._left)
+
+            if node._right is not None:
+                elements += self._postorder_aux(node._right)
+
+            elements.append(deepcopy(node._value))
+
+
+        return elements
 
     def postorder(self):
         """
@@ -589,7 +773,9 @@ class BST:
         """
 
         # your code here
+        a = self._postorder_aux(self._root)
 
+        return a
 
     def levelorder(self):
         """
@@ -604,6 +790,21 @@ class BST:
         """
 
         # your code here
+        elements = []
+
+        if self._root is not None:
+            queue = [self._root]
+
+            while len(queue) > 0:
+                element = queue.pop(0)
+                elements.append(deepcopy(element._value))
+
+                if element._left is not None:
+                    queue.append(element._left)
+                if element._right is not None:
+                    queue.append(element._right)
+
+        return elements
 
 
     def count(self):
