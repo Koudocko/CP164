@@ -84,8 +84,7 @@ class Sorted_List:
         -------------------------------------------------------
         """
         # Your code here
-
-        return
+        return len(self._values)
 
     def _binary_search(self, key):
         """
@@ -103,8 +102,20 @@ class Sorted_List:
         -------------------------------------------------------
         """
         # Your code here
+        low, high = 0, len(self._values)
+        i = -1
 
-        return
+        while i == -1 and low < high:
+            mid = (low + high) // 2
+
+            if self._values[mid] == key:
+                i = mid
+            elif key < self._values[mid]:
+                high = mid
+            else:
+                low = mid + 1
+
+        return i
 
     def _is_valid_index(self, i):
         """

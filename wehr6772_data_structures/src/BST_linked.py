@@ -182,6 +182,7 @@ class BST:
             elif node._value == key:
                 # for comparison counting
                 value = deepcopy(node._value)
+
         return value
 
     def remove(self, key):
@@ -299,6 +300,19 @@ class BST:
         """
 
         # your code here
+        node = self._root
+        contains = False
+
+        while node is not None and not contains:
+            if node._value > key:
+                node = node._left
+            elif node._value < key:
+                node = node._right
+            elif node._value == key:
+                contains = True
+
+        return contains
+
 
 
     def height(self):
@@ -374,7 +388,36 @@ class BST:
 
 
         # your code here
+        node = self._root
+        parent = None
+        value = None
 
+        while node is not None and value is None:
+            if node._value > key:
+                parent = node
+                node = node._left
+            elif node._value < key:
+                parent = node
+                node = node._right
+            elif node._value == key:
+                if parent is not None:
+                    value = deepcopy(parent._value)
+
+        return value
+
+    def _parents_r_aux(self, key, parent, node):
+        value = None
+
+        if node is not None:
+            if node._value > key:
+                value = self._parents_r_aux(key, node, node._left)
+            elif node._value < key:
+                value = self._parents_r_aux(key, node, node._right)
+            elif node._value == key:
+                if parent is not None:
+                    value = deepcopy(parent._value)
+
+        return value
 
     def parent_r(self, key):
         """
@@ -392,6 +435,9 @@ class BST:
 
 
         # your code here
+        value = self._parents_r_aux(key, None, self._root)
+
+        return value
 
 
     def max(self):
@@ -556,6 +602,29 @@ class BST:
 
         return count
 
+    def _node_counts_aux(self, node):
+        zero, one, two = 0, 0, 0
+
+        if node is not None:
+            if node._left is None and node._right is None:
+                zero += 1
+            elif node._left is not None and node._right is not None:
+                two += 1
+            else:
+                one += 1
+
+            if node._left is not None:
+                temp = self._node_counts_aux(node._left)
+                zero += temp[0]
+                one += temp[1]
+                two += temp[2]
+            if node._right is not None:
+                temp = self._node_counts_aux(node._right)
+                zero += temp[0]
+                one += temp[1]
+                two += temp[2]
+
+        return zero, one, two
 
     def node_counts(self):
         """
@@ -571,6 +640,9 @@ class BST:
         """
 
         # your code here
+        zero, one, two = self._node_counts_aux(self._root)
+
+        return zero, one, two
 
 
     def _is_balanced_aux(self, curr):
@@ -847,4 +919,3 @@ class BST:
                     queue.append(node._left)
                 if node._right is not None:
                     queue.append(node._right)
-                    

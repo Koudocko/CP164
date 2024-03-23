@@ -82,7 +82,9 @@ class Hash_Set:
         -------------------------------------------------------
         """
         # your code here
-        return
+        slot = self._table[hash(key) % self._capacity]
+
+        return slot
 
 
     def __contains__(self, key):
@@ -125,20 +127,19 @@ class Hash_Set:
         -------------------------------------------------------
         """
         # your code here
-        if not self.__contains__(value):
-            slot_list = self._table[hash(value) % self._capacity]
-            slot_list.append(deepcopy(value))
+        slot_list = self._table[hash(value) % self._capacity]
+        inserted = False
 
-            if len(slot_list) > self._LOAD_FACTOR:
+        if value not in slot_list:
+            slot_list.insert(0, deepcopy(value))
+            self._count += 1
+
+            if self._count > (self._LOAD_FACTOR * self._capacity):
                 self._rehash()
 
             inserted = True
-            self._count += 1
-        else:
-            inserted = False
 
         return inserted
-
 
     def find(self, key):
         """
@@ -198,9 +199,12 @@ class Hash_Set:
         for _ in range(0, self._capacity):
             self._table.append(List())
 
-        for slot in table_ref:
-            for val in slot:
-                self._table[hash(val) % self._capacity].append(deepcopy(val))
+        while len(table_ref) > 0:
+            slot_ref = table_ref.pop(0)
+
+            while len(slot_ref._values) > 0:
+                val = slot_ref.remove_front()
+                self._table[hash(val) % self._capacity].append(val)
 
         return
 

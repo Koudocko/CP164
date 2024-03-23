@@ -377,8 +377,9 @@ class List:
         -------------------------------------------------------
         """
         # Your code here
+        empty = len(self._values) <= 0
 
-        return
+        return empty
 
     def __eq__(self, target):
         """
