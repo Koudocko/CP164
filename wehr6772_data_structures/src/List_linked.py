@@ -58,7 +58,7 @@ class List:
         -------------------------------------------------------
         """
         # your code here
-        return
+        return self._count <= 0
 
     def __len__(self):
         """

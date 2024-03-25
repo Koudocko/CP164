@@ -384,3 +384,52 @@ class Sorts:
             else:
                 equals._move_front_to_rear(source)
         return lesser, equals, greater
+
+    @staticmethod
+    def _countingSort(arr, offset):
+        buckets = [List() for _ in range(10)]
+
+        arr_head = arr._front
+        while arr_head is not None:
+            idx = arr_head._value // offset % 10
+            buckets[idx].append(arr_head._value)
+            arr_head = arr_head._next
+
+        i = 0
+        arr_head = arr._front
+        bucket_head = buckets[i]._front
+
+        while arr_head is not None:
+            while buckets[i].is_empty() or bucket_head is None:
+                if bucket_head is not None:
+                    bucket_head = bucket_head._next
+                else:
+                    i += 1
+                    bucket_head = buckets[i]._front
+
+            arr_head._value = bucket_head._value
+            bucket_head = bucket_head._next
+            arr_head = arr_head._next
+
+        return
+
+    @staticmethod
+    def radix_sort(a):
+        """
+        -------------------------------------------------------
+        Performs a base 10 radix sort.
+        Use: radix_sort(a)
+        -------------------------------------------------------
+        Parameters:
+            a - a List of base 10 integers (List)
+        Returns:
+            None
+        -------------------------------------------------------
+        """
+
+        max_val = max(a)
+
+        offset = 1
+        while max_val // offset > 0:
+            Sorts._countingSort(a, offset)
+            offset *= 10

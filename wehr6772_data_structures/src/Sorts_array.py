@@ -711,3 +711,79 @@ class Sorts:
 
         a[i] = a[j]
         return
+
+    @staticmethod
+    def _countingSort(arr, offset):
+        out = [0] * len(arr)
+        count = [0] * 10
+
+        for i in range(0, len(arr)):
+            idx = arr[i] // offset
+            count[idx % 10] += 1
+
+        for i in range(1, 10):
+            count[i] += count[i - 1]
+
+        i = len(arr) - 1
+        while i >= 0:
+            idx = arr[i] // offset % 10
+            out[count[idx] - 1] = arr[i]
+            count[idx] -= 1
+            i -= 1
+
+        for i in range(0, len(arr)):
+            arr[i] = out[i]
+
+        return
+
+    @staticmethod
+    def radix_sort(a):
+        """
+        -------------------------------------------------------
+        Performs a base 10 radix sort.
+        Use: Sorts.radix_sort(a)
+        -------------------------------------------------------
+        Parameters:
+            a - an array of base 10 integers (list)
+        Returns:
+            None
+        --------
+        """
+
+        max_val = max(a)
+
+        offset = 1
+        while max_val // offset > 0:
+            Sorts._countingSort(a, offset)
+            offset *= 10
+
+        return
+
+    @staticmethod
+    def gnome_sort(a):
+        """
+        -------------------------------------------------------
+        Sorts an array using the Gnome Sort algorithm.
+        Use: gnome_sort(a)
+        -------------------------------------------------------
+        Parameters:
+            a - an array of comparable elements (list)
+        Returns:
+            None
+        -------------------------------------------------------
+        """
+        i = 0
+
+        while i < len(a):
+            if i == 0:
+                i += 1
+            elif a[i] < a[i - 1]:
+                temp = a[i - 1]
+                a[i - 1] = a[i]
+                a[i] = temp
+
+                i -= 1
+            else:
+                i += 1
+
+        return
